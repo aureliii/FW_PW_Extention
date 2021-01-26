@@ -3,7 +3,7 @@ var fs = require('fs');
 var path = require('path');
 var parser = require('xml2json');
 var js2xmlparser = require("js2xmlparser");
-var dirname='force-app/main/default/profiles/';
+var dirname='../force-app/main/default/profiles/';
 var format = require('xml-formatter');
 var M_ProfName_OBJPerm = new Map();
 var listProfile = [];
@@ -192,22 +192,7 @@ async function f(){
               
 
               metadataProfile.objectPermissions = metadataProfile.objectPermissions.sort((a, b) => (a.object > b.object) ? 1 : -1);
-              metadataProfile["@"]={"xmlns":"http://soap.sforce.com/2006/04/metadata"};
-              var options = {
-                declaration: {
-                    "encoding": "UTF-8"
-                }
-              };
-              var xml=js2xmlparser.parse("Profile", metadataProfile, options);
-              
-              fs.writeFile('C:/Users/aurel/Desktop/Projects/GreenDev1/GreenfieldNodeJS/testWrite'+'.profile-meta.xml', format(xml, {collapseContent: true}), function(err, data) {
-                if (err) {
-                  console.log(err);
-                }
-                else {
-                 console.log('updated!');
-                }
-              });
+             
           //    console.log('struct with newObjPerm filtered ',metadataProfile.objectPermissions);      
           }
               for (var key of myMap.keys()) {
