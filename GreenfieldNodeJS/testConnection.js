@@ -7,6 +7,7 @@ var dirname='../force-app/main/default/profiles/';
 var format = require('xml-formatter');
 var M_ProfName_OBJPerm = new Map();
 var listProfile = [];
+
 let objects = [];
 const metaProf = [];
 var jsonTemplate ;
