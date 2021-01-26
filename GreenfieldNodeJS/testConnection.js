@@ -142,7 +142,7 @@ async function f(){
         meta.forEach(function(metadataProfile){ 
    //       console.log('full name '+ metadataProfile.fullName);
   //        console.log('full metadataProfile ', metadataProfile);
-      //    console.log('typeof metadataProfile.objectPermissions'+ typeof metadataProfile.objectPermissions);
+          console.log('typeof metadataProfile.objectPermissions'+ typeof metadataProfile.objectPermissions);
           if ( metadataProfile.hasOwnProperty('objectPermissions') &&  typeof metadataProfile.objectPermissions !== 'undefined') {
 
      //       console.log('  objectPermission length  '+metadataProfile.objectPermissions.length);
