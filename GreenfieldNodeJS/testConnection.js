@@ -93,8 +93,7 @@ try {
             metaProf.push(metadataProfile);
             M_ProfName_OBJPerm[metadataProfile.fullName] = M_ProfName_OBJPerm[metadataProfile.fullName] || [];
             M_ProfName_OBJPerm[metadataProfile.fullName].push(metadataProfile.objectPermissions);
-
-
+            
             for (var key of myMap.keys()) {
               var object = metadataProfile[myMap.get(key)];            
               if(typeof object !== 'undefined' && typeof jsonTemplate["Profile"][key] !== 'undefined' && jsonTemplate["Profile"][key]){
@@ -105,25 +104,7 @@ try {
                 
                 metadataProfile[myMap.get(key)]=objectFiltered;
               }
-            }
-            metadataProfile["@"]={"xmlns":"http://soap.sforce.com/2006/04/metadata"};
-            var options = {
-              declaration: {
-                  "encoding": "UTF-8"
-              }
-            };
-            var xml=js2xmlparser.parse("Profile", metadataProfile, options);
-      /*      
-            fs.writeFile(dirname + metadataProfile.fullName+'.profile-meta.xml', format(xml, {collapseContent: true}), function(err, data) {
-              if (err) {
-                console.log(err);
-              }
-              else {
-                
-             //   console.log('updated!');
-              }
-            });
-         */   
+            }   
           });
           
         });
@@ -144,14 +125,12 @@ async function f(){
          // console.log('full metadataProfile ', metadataProfile);
           console.log('typeof metadataProfile.objectPermissions'+ typeof metadataProfile.objectPermissions);
           if ( metadataProfile.hasOwnProperty('objectPermissions') &&  typeof metadataProfile.objectPermissions !== 'undefined') {
-
      //       console.log('  objectPermission length  '+metadataProfile.objectPermissions.length);
      //       console.log('  instance off   ',Array.isArray(metadataProfile.objectPermissions));
             if (!Array.isArray(metadataProfile.objectPermissions)) {
               if (objectNames.includes(metadataProfile.objectPermissions.object)) {
                 objectNames.push(metadataProfile.objectPermissions.object);
-              }
-                
+              }             
                 metadataProfile.objectPermissions = Object.entries(metadataProfile.objectPermissions);
    //             console.log('solo 1 obj perm  '+metadataProfile.objectPermissions.object);
    //             console.log('  instance off per 1 elemento    ',Array.isArray(metadataProfile.objectPermissions));
@@ -165,7 +144,6 @@ async function f(){
                     }         
       //              console.log('dopo il push ');
                   }
- //                 console.log('for chiuso ');
             }
             console.log('profile name  '+metadataProfile.fullName);
             console.log('objects  '+objects);
@@ -189,10 +167,7 @@ async function f(){
      //           console.log('newObjPerm ',newObjPerm);               
               });
 
-              
-
-              metadataProfile.objectPermissions = metadataProfile.objectPermissions.sort((a, b) => (a.object > b.object) ? 1 : -1);
-             
+              metadataProfile.objectPermissions = metadataProfile.objectPermissions.sort((a, b) => (a.object > b.object) ? 1 : -1);           
           //    console.log('struct with newObjPerm filtered ',metadataProfile.objectPermissions);      
           }
               for (var key of myMap.keys()) {
@@ -201,8 +176,7 @@ async function f(){
                   var objectFiltered = object.filter(function(value, index, arr){
                     
                     return jsonTemplate["Profile"][key].indexOf(value[key])<0;
-                  });
-                  
+                  });                
                   metadataProfile[myMap.get(key)]=objectFiltered;
                 }
               }
@@ -215,7 +189,7 @@ async function f(){
                 }
               };
               var xml=js2xmlparser.parse("Profile", metadataProfile, options);
-              
+             
               fs.writeFile(dirname + metadataProfile.fullName+'.profile-meta.xml', format(xml, {collapseContent: true}), function(err, data) {
                 if (err) {
                   console.log(err);
@@ -237,11 +211,6 @@ async function f(){
         }
     */    
 
-        
-      
-  
-
-      
     } catch (error) {
       console.log('sono nel catch di f()!' + error.message);
     }
